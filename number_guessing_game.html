@@ -39,44 +39,20 @@
     </div>
 
     <script>
-        // Generate a random number from 1-100
+        
         var randomNumber = Math.floor(Math.random() * 100) + 1;
     
-        /* Set a variable called "guesses" that returns the first
-            element that matches the CSS class "guesses."
-        */
         var guesses = document.querySelector('.guesses');
-        /* Set a variable called "lastResult" that returns the first
-            element that matches the CSS class "lastResult."
-        */
         var lastResult = document.querySelector('.lastResult');
-        /* Set a variable called "lowOrHi" that returns the first
-            element that matches the CSS class "lowOrHi."
-        */
         var lowOrHi = document.querySelector('.lowOrHi');
-        /* Set a variable called "guessSubmit" that stores the value of
-             the submit button.
-        */
+
         var guessSubmit = document.querySelector('.guessSubmit');
-        /* Set a variable called "guessField" that stores the user input
-            from the form text input with the CSS class "guessField"
-        */
         var guessField = document.querySelector('.guessField');
-        
-        /* Set a variable called "guessCount" to the integer 1 which will 
-            be used to keep track of how many guesses the user makes
-        */ 
+
         var guessCount = 1;
-        /* Set a variable called "resetButton" to reference the rest button.
-        */ 
         var resetButton;
 
-        /* Sets a function called "checkGuess"
-        */
         function checkGuess() {
-            /* sets a variable to the current value entered in the text
-            field
-            */
             var userGuess = Number(guessField.value);
             if (guessCount === 1) {
                 guesses.textContent += 'Previous guesses: ';
