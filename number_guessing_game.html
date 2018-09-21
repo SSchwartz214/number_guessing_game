@@ -2,34 +2,87 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 
-    <title>Number guessing game</title>
+    <title>Number Guesser</title>
 
     <style>
-      html {
-        font-family: sans-serif;
-      }
-      body {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
-      }
-      .lastResult {
-        color: white;
-        padding: 3px;
-      }
+        html {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+       
+        }
+
+        .main-head {
+            background-color: #404041;
+            color: #E6e7e8;
+            text-align: center;
+            padding: 20px;
+            font-weight: 300;
+            font-size: 45px;
+        }
+
+        .pink {
+            color: #ED458B;
+            font-weight: 700;
+        }
+
+        .form {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+            
+        }
+
+        .guessField {
+            width: 375px;
+            height: 25px;
+            font-size:24px;
+            font-weight: 300;
+        }
+
+        .buttons-1 {
+            display: flex;
+            justify-content: center;
+            align-content: space-between;
+        }
+
+        .button {
+            background-color: #929497;
+            color: #FFFFFF;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 300;
+            width: 25%;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #EB008B;
+            color: white;
+            color: #FFFFFF;
+        }
+
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
     </style>
   </head>
 
   <body>
-    <h1>Number guessing game</h1>
-
-    <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
-
+    <header class="main-head"><span class="pink">Number</span> Guesser</header>
+    
     <div class="form">
-      <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
-      <input type="submit" value="Submit guess" class="guessSubmit">
+      </label><input type="text" id="guessField" class="guessField" placeholder="Enter your guess">
+    </div>
+    
+    <div class="buttons-1">
+      <input class="button" type="submit" value="Guess" id="guessSubmit">
+      <input class="button" type="reset" value="Clear" id="resetButton">
     </div>
 
     <div class="resultParas">
@@ -46,7 +99,7 @@
         var lastResult = document.querySelector('.lastResult');
         var lowOrHi = document.querySelector('.lowOrHi');
 
-        var guessSubmit = document.querySelector('.guessSubmit');
+        var guessSubmit = document.querySelector('#guessSubmit');
         var guessField = document.querySelector('.guessField');
 
         var guessCount = 1;
