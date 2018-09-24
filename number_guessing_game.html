@@ -88,6 +88,8 @@
     <div class="buttons-1">
       <input class="button" type="submit" value="Guess" id="guessSubmit">
       <button class="button" onclick="document.getElementById('guessField').value = ''">Clear</button>
+      <input class="button" type="reset" value="Reset" id="resetButton">
+
     </div>
 
     <div class="resultParas">
@@ -106,9 +108,9 @@
 
         var guessSubmit = document.querySelector('#guessSubmit');
         var guessField = document.querySelector('.guessField');
+        var resetButton = document.querySelector('#resetButton');
 
         var guessCount = 1;
-        var resetButton;
 
         function checkGuess() {
             var userGuess = Number(guessField.value);
@@ -138,14 +140,11 @@
 
         guessSubmit.addEventListener('click', checkGuess);
 
-        function setGameOver() {
-            guessField.disabled = true;
-            guessSubmit.disabled = true;
-            resetButton = document.createElement('button');
-            resetButton.textContent = 'Start a new game';
-            document.body.appendChild(resetButton);
-            resetButton.addEventListener('click', resetGame);
-        }
+    
+            // guessSubmit.disabled = true;
+            // document.body.appendChild(resetButton);
+            // guessField.disabled = true;
+        
 
         function resetGame() {
             guessCount = 1;
@@ -154,8 +153,6 @@
             for (var i = 0 ; i < resetParas.length ; i++) {
                 resetParas[i].textContent = '';
             }
-
-            resetButton.parentNode.removeChild(resetButton);
 
             guessField.disabled = false;
             guessSubmit.disabled = false;
@@ -166,6 +163,9 @@
 
             randomNumber = Math.floor(Math.random() * 100) + 1;
         }
+
+        resetButton.addEventListener('click', resetGame);
+
 
     </script>
   </body>
