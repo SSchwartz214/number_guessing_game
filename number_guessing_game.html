@@ -89,7 +89,6 @@
       <input class="button" type="submit" value="Guess" id="guessSubmit">
       <button class="button" onclick="document.getElementById('guessField').value = ''">Clear</button>
       <input class="button" type="reset" value="Reset" id="resetButton">
-
     </div>
 
     <div class="resultParas">
@@ -139,13 +138,7 @@
         }
 
         guessSubmit.addEventListener('click', checkGuess);
-
-    
-            // guessSubmit.disabled = true;
-            // document.body.appendChild(resetButton);
-            // guessField.disabled = true;
         
-
         function resetGame() {
             guessCount = 1;
 
