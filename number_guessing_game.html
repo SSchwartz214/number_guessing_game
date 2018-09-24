@@ -56,7 +56,7 @@
             border-radius: 12px;
             font-size: 24px;
             font-weight: 300;
-            width: 25%;
+            width: 12%;
             margin: 10px;
         }
 
@@ -70,6 +70,11 @@
             color: white;
             padding: 3px;
         }
+
+        .guesses {
+            color: #EB008B;
+        }
+
     </style>
   </head>
 
@@ -82,7 +87,7 @@
     
     <div class="buttons-1">
       <input class="button" type="submit" value="Guess" id="guessSubmit">
-      <input class="button" type="reset" value="Clear" id="resetButton">
+      <button class="button" onclick="document.getElementById('guessField').value = ''">Clear</button>
     </div>
 
     <div class="resultParas">
@@ -108,21 +113,16 @@
         function checkGuess() {
             var userGuess = Number(guessField.value);
             if (guessCount === 1) {
-                guesses.textContent += 'Previous guesses: ';
+                guesses.textContent += 'Your last guess was ';
             }
             guesses.textContent += userGuess + ' ';
 
             if (userGuess === randomNumber) {
                 lastResult.textContent = 'BOOM!'
-                lastResult.style.backgroundColor = 'green';
                 lowOrHi.textContent = '';
-                setGameOver();
-            }   else if (guessCount === 10) {
-                lastResult.textContent = '!!!GAME OVER!!!';
                 setGameOver();
             }   else {
                 lastResult.textContent = 'Wrong!';
-                lastResult.style.backgroundColor = 'red';
                 if(userGuess < randomNumber) {
                     lowOrHi.textContent = 'That is too low'
                 }   else if(userGuess > randomNumber) {
