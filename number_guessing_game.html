@@ -15,21 +15,21 @@
     <header class="main-head"><span class="pink">Number</span> Guesser</header>
     
     <div class="form">
-      </label><input type="text" id="guessField" class="guessField" placeholder="Enter your guess">
+      </label><input type="text" id="guessField" class="guessField" placeholder="Enter your guess" onkeypress="buttonEnabler()">
     </div>
     
     <div class="buttons">
       <input class="button" type="submit" value="Guess" id="guessSubmit">
-      <button class="button" onclick="document.getElementById('guessField').value = ''">Clear</button>
+      <button class="button" id="clearButton" onclick="document.getElementById('guessField').value = ''" disabled="disabled">Clear</button>
     </div>
 
     <div class="resultParas">
-      <p class="guesses"></p>
+      <div class="guesses"></div>
       <p class="lowOrHi"></p>
     </div>
 
     <div class="buttons">
-        <input class="resetButton" type="reset" value="Reset" id="resetButton">
+        <input class="button wider" type="reset" value="Reset" id="resetButton" disabled="disabled">
     </div>
 
     <script>
@@ -47,19 +47,26 @@
 
         function checkGuess() {
             var userGuess = Number(guessField.value);
-            if (guessCount === 1) {
-                guesses.textContent += 'Your last guess was ';
-            }
-            guesses.textContent += userGuess + ' ';
-    
+            
             if (userGuess === randomNumber) {
                 lowOrHi.textContent = 'BOOM!';
+            }  else if(isNaN(userGuess)) {
+                alert("That is not a valid number")
+                guessField.value = '';
+                return;
+            }  else if(userGuess > 100 || userGuess < 1) {
+                alert(userGuess + " is not within the accepted range, please pick a number between 1 and 100");
+                guessField.value = '';
+                return;
             }  else if(userGuess < randomNumber) {
-                    lowOrHi.textContent = 'That is too low'
+                lowOrHi.textContent = 'That is too low'
             }  else if(userGuess > randomNumber) {
-                    lowOrHi.textContent = 'That is too high';
+                lowOrHi.textContent = 'That is too high';
             }
+            
+            document.querySelector('#resetButton').disabled = false;
 
+            guesses.innerHTML = "<p>Your last guess was</p><h3>" + userGuess + "</h3>";
             guessCount++;
             guessField.value = '';
             guessField.focus();
@@ -78,12 +85,18 @@
             guessField.disabled = false;
             guessSubmit.disabled = false;
             guessField.value = '';
+            guesses.innerHTML = '';
             guessField.focus();
 
 
             randomNumber = Math.floor(Math.random() * 100) + 1;
         }
 
+
+        function buttonEnabler() {
+           document.querySelector('#clearButton').disabled = false;
+        }
+        
         resetButton.addEventListener('click', resetGame);
 
 

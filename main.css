@@ -50,6 +50,9 @@
             margin: 10px;
         }
 
+        .button.wider{
+            width: 25%;
+        }
         .resetButton {
             background-color: #929497;
             color: #FFFFFF;
@@ -66,13 +69,19 @@
             color: #FFFFFF;
         }
 
-        .resultParas {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
+        .button:disabled {
+            background-color:#929497;
+            opacity: 0.5;
         }
 
-        .guesses {
-            color: #EB008B;
+        .resultParas {
+            text-align: center;
         }
+
+        .guesses h3 {
+            font-size: 30px;
+            color: #EB008B;
+            margin: 10px 0;
+        }
+
 
