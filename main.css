@@ -34,7 +34,7 @@
             font-weight: 300;
         }
 
-        .buttons-1 {
+        .buttons {
             display: flex;
             justify-content: center;
             align-content: space-between;
@@ -46,7 +46,20 @@
             border-radius: 12px;
             font-size: 24px;
             font-weight: 300;
-            width: 12%;
+            width: 12.5%;
+            margin: 10px;
+        }
+
+        .button.wider{
+            width: 25%;
+        }
+        .resetButton {
+            background-color: #929497;
+            color: #FFFFFF;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 300;
+            width: 25%;
             margin: 10px;
         }
 
@@ -56,11 +69,19 @@
             color: #FFFFFF;
         }
 
-        .lastResult {
-            color: white;
-            padding: 3px;
+        .button:disabled {
+            background-color:#929497;
+            opacity: 0.5;
         }
 
-        .guesses {
-            color: #EB008B;
+        .resultParas {
+            text-align: center;
         }
+
+        .guesses h3 {
+            font-size: 30px;
+            color: #EB008B;
+            margin: 10px 0;
+        }
+
+
