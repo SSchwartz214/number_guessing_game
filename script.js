@@ -1,19 +1,18 @@
 var randomNumber = Math.floor(Math.random() * 100) + 1;
-    
 var lowOrHi = document.querySelector('.lowOrHi');
-
 var guessSubmit = document.querySelector('#guessSubmit');
 var guessField = document.querySelector('.guessField');
 var guesses = document.querySelector('.guesses');
 var resetButton = document.querySelector('#resetButton');
+var clearButton = document.querySelector('#clearButton');
 
-var guessCount = 1;
 
 function checkGuess() {
     var userGuess = Number(guessField.value);
     
     if (userGuess === randomNumber) {
         lowOrHi.textContent = 'BOOM!';
+        setGameOver();
     }  else if(isNaN(userGuess)) {
         alert("That is not a valid number")
         guessField.value = '';
@@ -31,16 +30,20 @@ function checkGuess() {
     document.querySelector('#resetButton').disabled = false;
 
     guesses.innerHTML = "<p>Your last guess was</p><h3>" + userGuess + "</h3>";
-    guessCount++;
     guessField.value = '';
     guessField.focus();
 }
 
 guessSubmit.addEventListener('click', checkGuess);
 
-function resetGame() {
-    guessCount = 1;
+function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    clearButton.disabled = true;
+    
+  }
 
+function resetGame() {
     var resetParas = document.querySelectorAll('.resultParas p');
     for (var i = 0 ; i < resetParas.length ; i++) {
         resetParas[i].textContent = '';
@@ -52,13 +55,18 @@ function resetGame() {
     guesses.innerHTML = '';
     guessField.focus();
 
-
     randomNumber = Math.floor(Math.random() * 100) + 1;
 }
 
-
 function buttonEnabler() {
-    document.querySelector('#clearButton').disabled = false;
+    clearButton.disabled = false;
+}
+
+function buttonDisabler() {
+    resetButton.disabled = true;
+    clearButton.disabled = true;
 }
 
 resetButton.addEventListener('click', resetGame);
+resetButton.addEventListener('click', buttonDisabler);
+
