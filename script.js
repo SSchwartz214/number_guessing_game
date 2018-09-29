@@ -8,7 +8,7 @@ var clearButton = document.querySelector('#clearButton');
 var minField = document.querySelector('#minField');
 var maxField = document.querySelector('#maxField');
 var rangeButton = document.querySelector('#rangeSubmit');
-var result;
+var result = false
 var min; 
 var max;
 
@@ -17,8 +17,6 @@ function setRange() {
     max = Number(maxField.value);
     randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     alert("The new range is between " + min + " and " + max + "." + " Please submit your guess:");
-    rangeButton.disabled = true;
-    result = false;
 }
 
 rangeButton.addEventListener('click', setRange);
@@ -34,7 +32,7 @@ function checkGuess() {
         guessField.value = '';
         return;
     }  else if(userGuess > max || userGuess < min) {
-        alert(userGuess + " is not within the accepted range, please pick a number between" + min + "and" + max);
+        alert(userGuess + " is not within the accepted range, please pick a number between " + min + " and " + max);
         guessField.value = '';
         return;
     }  else if(userGuess < randomNumber) {
@@ -56,6 +54,7 @@ function setGameOver() {
     guessField.disabled = true;
     guessSubmit.disabled = true;
     clearButton.disabled = true;
+    resetButton.value = "Next Level";
     result = true;
   }
 
@@ -73,14 +72,20 @@ function resetGame() {
     guesses.innerHTML = '';
     guessField.focus();
 
-    if (result = true) {
+    if (result === true) {
         min = min - 10;
         max = max + 10;
-        randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-        alert("A new number has been generated between " + min + " and " + max + "." + " Please submit your guess:")
+        minField.value = min;
+        maxField.value = max;
+        setRange();
+        result = false
     } else {
-    randomNumber = Math.floor(Math.random() * 100) + 1;
+        minField.value = 0;
+        maxField.value = 100;
+        setRange();
     }
+    
+    resetButton.value = "Reset";
 }
 
 function buttonEnabler() {
