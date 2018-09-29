@@ -14,6 +14,8 @@ function setRange() {
     var min = Number(minField.value);
     var max = Number(maxField.value);
     randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    alert("The new range is between " + min + " and " + max + "." + " Please submit your guess:");
+    rangeButton.disabled = true;
 }
 
 rangeButton.addEventListener('click', setRange);
@@ -62,6 +64,8 @@ function resetGame() {
 
     guessField.disabled = false;
     guessSubmit.disabled = false;
+    rangeButton.disabled = false;
+
     guessField.value = '';
     guesses.innerHTML = '';
     guessField.focus();
