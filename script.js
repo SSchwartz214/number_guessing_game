@@ -1,21 +1,33 @@
 var randomNumber = Math.floor(Math.random() * 100) + 1;
-    
 var lowOrHi = document.querySelector('.lowOrHi');
-
 var guessSubmit = document.querySelector('#guessSubmit');
 var guessField = document.querySelector('.guessField');
 var guesses = document.querySelector('.guesses');
 var resetButton = document.querySelector('#resetButton');
+var clearButton = document.querySelector('#clearButton');
+var minField = document.querySelector('#minField');
+var maxField = document.querySelector('#maxField');
+var rangeButton = document.querySelector('#rangeSubmit');
 
-var guessCount = 1;
+
+function setRange() {
+    var min = Number(minField.value);
+    var max = Number(maxField.value);
+    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    alert("The new range is between " + min + " and " + max + "." + " Please submit your guess:");
+    rangeButton.disabled = true;
+}
+
+rangeButton.addEventListener('click', setRange);
 
 function checkGuess() {
     var userGuess = Number(guessField.value);
     
     if (userGuess === randomNumber) {
         lowOrHi.textContent = 'BOOM!';
+        setGameOver();
     }  else if(isNaN(userGuess)) {
-        alert("That is not a valid number")
+        alert("That is not a valid number");
         guessField.value = '';
         return;
     }  else if(userGuess > 100 || userGuess < 1) {
@@ -23,7 +35,7 @@ function checkGuess() {
         guessField.value = '';
         return;
     }  else if(userGuess < randomNumber) {
-        lowOrHi.textContent = 'That is too low'
+        lowOrHi.textContent = 'That is too low';
     }  else if(userGuess > randomNumber) {
         lowOrHi.textContent = 'That is too high';
     }
@@ -31,16 +43,20 @@ function checkGuess() {
     document.querySelector('#resetButton').disabled = false;
 
     guesses.innerHTML = "<p>Your last guess was</p><h3>" + userGuess + "</h3>";
-    guessCount++;
     guessField.value = '';
     guessField.focus();
 }
 
 guessSubmit.addEventListener('click', checkGuess);
 
-function resetGame() {
-    guessCount = 1;
+function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    clearButton.disabled = true;
+    
+  }
 
+function resetGame() {
     var resetParas = document.querySelectorAll('.resultParas p');
     for (var i = 0 ; i < resetParas.length ; i++) {
         resetParas[i].textContent = '';
@@ -48,17 +64,24 @@ function resetGame() {
 
     guessField.disabled = false;
     guessSubmit.disabled = false;
+    rangeButton.disabled = false;
+
     guessField.value = '';
     guesses.innerHTML = '';
     guessField.focus();
 
-
     randomNumber = Math.floor(Math.random() * 100) + 1;
 }
 
-
 function buttonEnabler() {
-    document.querySelector('#clearButton').disabled = false;
+    clearButton.disabled = false;
+}
+
+function buttonDisabler() {
+    resetButton.disabled = true;
+    clearButton.disabled = true;
 }
 
 resetButton.addEventListener('click', resetGame);
+resetButton.addEventListener('click', buttonDisabler);
+
