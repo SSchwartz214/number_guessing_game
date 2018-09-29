@@ -78,10 +78,28 @@
             font-size: 30px;
             color: #EB008B;
             margin: 0px 0;
-            font-size: 200px;
+            font-size: 150px;
             font-weight: 300;
         }
 
         p {
             font-size: 25px;
+        }
+
+        .rangeForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rangeField {
+            width: 75px;
+            height: 25px;
+            font-size:24px;
+            font-weight: 300;
+        }
+
+        .rangeHeader {
+            text-align: center;
+            font-weight: 700;
         }

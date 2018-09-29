@@ -5,7 +5,18 @@ var guessField = document.querySelector('.guessField');
 var guesses = document.querySelector('.guesses');
 var resetButton = document.querySelector('#resetButton');
 var clearButton = document.querySelector('#clearButton');
+var minField = document.querySelector('#minField');
+var maxField = document.querySelector('#maxField');
+var rangeButton = document.querySelector('#rangeSubmit');
 
+
+function setRange() {
+    var min = Number(minField.value);
+    var max = Number(maxField.value);
+    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+rangeButton.addEventListener('click', setRange);
 
 function checkGuess() {
     var userGuess = Number(guessField.value);
@@ -14,7 +25,7 @@ function checkGuess() {
         lowOrHi.textContent = 'BOOM!';
         setGameOver();
     }  else if(isNaN(userGuess)) {
-        alert("That is not a valid number")
+        alert("That is not a valid number");
         guessField.value = '';
         return;
     }  else if(userGuess > 100 || userGuess < 1) {
@@ -22,7 +33,7 @@ function checkGuess() {
         guessField.value = '';
         return;
     }  else if(userGuess < randomNumber) {
-        lowOrHi.textContent = 'That is too low'
+        lowOrHi.textContent = 'That is too low';
     }  else if(userGuess > randomNumber) {
         lowOrHi.textContent = 'That is too high';
     }

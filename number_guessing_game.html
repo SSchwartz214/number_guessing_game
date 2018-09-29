@@ -14,7 +14,7 @@
     <header class="main-head"><span class="pink">Number</span> Guesser</header>
     
     <div class="form">
-      </label><input type="text" id="guessField" class="guessField" placeholder="Enter your guess" onkeypress="buttonEnabler()">
+      <input type="text" id="guessField" class="guessField" placeholder="Enter your guess" onkeypress="buttonEnabler()">
     </div>
     
     <div class="buttons">
@@ -30,6 +30,18 @@
     <div class="buttons">
         <input class="button wider" type="reset" value="Reset" id="resetButton" disabled="disabled">
     </div>
+
+    <h3 class="rangeHeader">Set Custom Range:</h3>
+    <div class='rangeForm'>
+        <label for="#minField">Minimum</label>
+        <input type="number" class="rangeField" id="minField" value=0>
+
+        <label for="#maxField">Maximum</label>
+        <input type="number" class="rangeField" id="maxField" value=100>
+
+        <input class="button" type="submit" id="rangeSubmit">
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
